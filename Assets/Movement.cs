@@ -26,8 +26,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
-        // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
 
     }
