@@ -19,9 +19,6 @@ public class Enemy: MonoBehaviour
     [SerializeField]
     private float sightRange = 22f, attackRange = 10f;
 
-    [SerializeField]
-    LayerMask playerMask;
-
     private SightSense sightSense;
     private AttackSense attackSense;
 
@@ -40,11 +37,12 @@ public class Enemy: MonoBehaviour
 
     public void attack() {
         if (!isAttacking) {
-            Invoke(nameof(damageOpponant), timeBetweenAttacks);
+            isAttacking = true;
+            StartCoroutine(nameof(damageOpponant));
         }
     }
 
-    private void damageOpponant() {
+    private IEnumerator damageOpponant() {
         Rigidbody rb = Instantiate(_weapon.weapon, 
             transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
@@ -52,6 +50,8 @@ public class Enemy: MonoBehaviour
         if (Player.Instance.health <= 0) {
             Debug.Log("Player has died");
         }
+        yield return new WaitForSeconds(timeBetweenAttacks);
+        isAttacking = false;
     }
 
     public bool isPlayerInSightRange()
@@ -81,5 +81,11 @@ public class Enemy: MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+            takeDamage(Player.Instance.weapon.getDamage());
     }
 }
