@@ -71,7 +71,7 @@ public class Enemy: MonoBehaviour
     }
 
     public IEnumerator die() {
-        Destroy(transform);
+        Destroy(transform.gameObject);
         yield return new WaitForSeconds(0.4f);
     }
 
