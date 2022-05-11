@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-
     public float damage = 50f;
     public float range = 50f;
     [SerializeField]
     Camera PlayerCam;
+    [SerializeField]
+    GameObject _gun;
+
+    public GameObject gun { get; }
 
 
     public int maxBullets = 30;
@@ -94,6 +97,10 @@ public class Gun : MonoBehaviour
                 target.takeDamage(damage); //call the take damage function
             }
         }
+    }
+
+    public float getDamage() {
+        return damage;
     }
      
 }

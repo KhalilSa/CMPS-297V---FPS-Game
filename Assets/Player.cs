@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
         int actual_damage = damage - armor;
         health -= actual_damage;
         armor--;
-        health_bar.SetHealth(50);
+        health_bar.SetHealth(health);
+        if (health <= 0)
+            Debug.Log("Player has died");
     }
 
     public int getHealth()

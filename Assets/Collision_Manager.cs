@@ -21,8 +21,6 @@ public class Collision_Manager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Collided");
-
         GameObject collidedObject = other.gameObject;
         if (collidedObject.tag == "Item")
         {
