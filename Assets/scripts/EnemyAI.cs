@@ -22,6 +22,11 @@ public class EnemyAI : MonoBehaviour
     bool walkPointFound;
     [SerializeField]
     float walkPointRange;
+    [Header("Animation Settings")]
+    [SerializeField]
+    private Animator _animator;
+    [SerializeField]
+    private State _currentState;
 
     float patrolTime;
     float idleTime; 
@@ -45,10 +50,34 @@ public class EnemyAI : MonoBehaviour
     {
         State state = getCurrentState();
         switch (state) {
-            case State.Attack: attack(); break;
-            case State.Chase: chase(); break;
-            case State.Patrol: patrol(); break;
-            case State.Idle: idle(); break;
+            case State.Attack: 
+                attack();
+                _animator.SetBool("isAttacking", true);
+                _animator.SetBool("isIdle", false);
+                _animator.SetBool("isChasing", false);
+                _animator.SetBool("isPatroling", false);
+                break;
+            case State.Chase: 
+                chase();
+                _animator.SetBool("isChasing", true);
+                _animator.SetBool("isAttacking", false);
+                _animator.SetBool("isIdle", false);
+                _animator.SetBool("isPatroling", false);
+                break;
+            case State.Patrol: 
+                patrol();
+                _animator.SetBool("isPatroling", true);
+                _animator.SetBool("isAttacking", false);
+                _animator.SetBool("isIdle", false);
+                _animator.SetBool("isChasing", false);
+                break;
+            case State.Idle: 
+                idle();
+                _animator.SetBool("isIdle", true);
+                _animator.SetBool("isAttacking", false);
+                _animator.SetBool("isChasing", false);
+                _animator.SetBool("isPatroling", false);
+                break;
         }
     }
 
@@ -75,6 +104,11 @@ public class EnemyAI : MonoBehaviour
 
     private void chase() {
         agent.SetDestination(player.transform.position);
+
+        // rotate/look at the player
+        Vector3 direction = player.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = rotation;
     }
 
     private void attack() {

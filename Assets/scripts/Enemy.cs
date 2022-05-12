@@ -71,6 +71,7 @@ public class Enemy: MonoBehaviour
     }
 
     public IEnumerator die() {
+        GetComponent<Animator>().SetBool("isDead", true);
         Destroy(transform.gameObject);
         yield return new WaitForSeconds(0.4f);
     }
