@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98485c3dd3daf594ca94149397b1ec54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 3
 --- !u!135 &38794904
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -179,7 +178,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &83714361 stripped
 Transform:
@@ -542,10 +541,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822e1f43a9981cf45b9b792f1f6e050d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 18
-  attackRange: 8
+  turningSpeed: 100
+  sightRange: 12.44
+  attackRange: 1.67
   timeBetweenAttacks: 1.5
+  idleTime: 3
+  patrolTime: 7
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  walkPointRange: 4
   bullet: {fileID: 2343360793809395269, guid: 12fd2d3911ae95548910b45e5da5002e, type: 3}
+  currentState: 0
 --- !u!195 &314690541
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -560,7 +567,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 2.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1585,7 +1592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSee: 0
-  _sightRange: 12
 --- !u!135 &1841839453
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1597,7 +1603,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 12
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1878178635
 GameObject:
