@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Rotate_Float: MonoBehaviour
 {
-
-
-
     //adjust this to change speed
     float speed = 1f;
     //adjust this to change how high it goes
