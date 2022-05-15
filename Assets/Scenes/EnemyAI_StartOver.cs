@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI_StartOver : MonoBehaviour
@@ -10,10 +11,11 @@ public class EnemyAI_StartOver : MonoBehaviour
 
     private NavMeshAgent agent;
     private Transform player;
+    private Player playerMng;
     private Rigidbody rb;
 
     [SerializeField]
-    private float turningSpeed = 100f;
+    private float turningSpeed = 1000f;
 
     [SerializeField]
     private float sightRange = 18f;
@@ -21,6 +23,8 @@ public class EnemyAI_StartOver : MonoBehaviour
 
     [SerializeField]
     private float attackRange = 8f;
+    [SerializeField]
+    private int attackDamage = 15;
     private AttackSense attackSense;
     private bool isAttacking = false;
 
@@ -31,17 +35,10 @@ public class EnemyAI_StartOver : MonoBehaviour
     [SerializeField]
     private float patrolTime = 7f;
     private bool isIdle = false;
+    private bool isDead = false;
 
     [SerializeField]
-    LayerMask groundMask;
-
-    [SerializeField]
-    float walkPointRange = 3f;
-    Vector3 walkPoint;
-    bool walkPointFound;
-
-    [SerializeField]
-    private GameObject bullet;
+    float walkPointRange = 5f;
 
     private Animator animator;
     [SerializeField]
@@ -54,7 +51,7 @@ public class EnemyAI_StartOver : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         currentState = getCurrentState();
         switch (currentState) {
@@ -78,7 +75,9 @@ public class EnemyAI_StartOver : MonoBehaviour
 
     private State getCurrentState()
     {
-        if (isPlayerInSightRange() && isPlayerInAttackRange())
+        if (isDead)
+            return State.Dead;
+        else if (isPlayerInSightRange() && isPlayerInAttackRange())
             return State.Attack;
         else if (isPlayerInSightRange() && !isPlayerInAttackRange())
             return State.Chase;
@@ -100,37 +99,17 @@ public class EnemyAI_StartOver : MonoBehaviour
 
     private void patrol()
     {
-        if (walkPointFound)
-            agent.SetDestination(player.position + getNewRandomVector());
-        else
-            findNewWalkingPoint();
+        agent.SetDestination(player.position + getNewRandomVector());
 
         setActiveAnimationState("isPatroling");
         isIdle = false;
-
-        bool walkingPointReached = Vector3.Distance(transform.position, walkPoint) <= 2f;
-        print(walkPointFound);
-        if (walkingPointReached)
-            walkPointFound = false;
-
-    }
-
-    private void findNewWalkingPoint()
-    {
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = transform.position + new Vector3(randomX, 0, randomZ);
-
-        print(walkPoint);
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, groundMask))
-            walkPointFound = true;
     }
 
     void getReferences() {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerMng = player?.GetComponent<Player>();
         sightSense = transform.Find("SightSense")?.GetComponent<SightSense>();
         attackSense = transform.Find("AttackSense")?.GetComponent<AttackSense>();
         animator = transform.Find("Zombie")?.GetComponent<Animator>();
@@ -148,6 +127,7 @@ public class EnemyAI_StartOver : MonoBehaviour
     void chase() {
         agent.SetDestination(player.position);
         setActiveAnimationState("isChasing");
+        facePlayer();
     }
 
     void attack() {
@@ -161,18 +141,14 @@ public class EnemyAI_StartOver : MonoBehaviour
 
     private IEnumerator damageOpponant()
     {
+        print("dealing damage");
         transform.LookAt(player.position);
         rb.velocity = Vector3.zero;
-        Rigidbody bulletRb = Instantiate(bullet,
-            transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        Vector3 direction = player.position - transform.position;
-        bulletRb.AddForce(direction * 32f, ForceMode.Impulse);
-        
         // TO-DO: damage player code
+        playerMng.takeDamage(attackDamage);
         
         yield return new WaitForSeconds(timeBetweenAttacks);
-        Destroy(bulletRb.gameObject);
-        isAttacking = false;
+        isAttacking = false;    
     }
 
     public bool isPlayerInSightRange()
@@ -219,7 +195,7 @@ public class EnemyAI_StartOver : MonoBehaviour
 
     private void facePlayer() {
         Vector3 direction = player.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turningSpeed);
     }
 
@@ -228,10 +204,6 @@ public class EnemyAI_StartOver : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
 
         return new Vector3(randomX, 0, randomZ);
-    }
-
-    void switchCurrentState(State state) {
-        currentState = state;
     }
 
     void dead() {

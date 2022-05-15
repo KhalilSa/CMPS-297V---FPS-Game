@@ -52,7 +52,7 @@ public class Enemy: MonoBehaviour
             transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
-        player.dealDamage(10);
+        player.takeDamage(10);
         yield return new WaitForSeconds(timeBetweenAttacks);
         isAttacking = false;
     }

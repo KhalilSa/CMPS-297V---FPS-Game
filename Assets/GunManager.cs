@@ -67,7 +67,7 @@ public class GunManager : MonoBehaviour
         
         foreach (Transform weapon in transform)
         {
-            if (weapon.gameObject.active)
+            if (weapon.gameObject.activeInHierarchy)
             {
                 Gun gun = weapon.gameObject.GetComponent<Gun>();
                 if(gun != null)
@@ -83,7 +83,7 @@ public class GunManager : MonoBehaviour
 
         foreach (Transform weapon in transform)
         {
-            if (weapon.gameObject.active)
+            if (weapon.gameObject.activeInHierarchy)
             {
                 Gun gun = weapon.gameObject.GetComponent<Gun>();
                 if (gun != null)

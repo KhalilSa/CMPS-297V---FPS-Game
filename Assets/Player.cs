@@ -28,11 +28,12 @@ public class Player : MonoBehaviour
         armor += arm;
     }
 
-    public void dealDamage(int damage)
+    public void takeDamage(int damage)
     {
-        int actual_damage = damage - armor;
+        int actual_damage = damage * ( 1 - armor / 100);
         health -= actual_damage;
-        armor--;
+        if (armor > 0)
+            armor--;
         health_bar.SetHealth(health);
         if (health <= 0)
             Debug.Log("Player has died");

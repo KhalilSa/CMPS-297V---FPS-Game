@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Rotate_Float: MonoBehaviour
 {
-    //adjust this to change speed
-    float speed = 1f;
-    //adjust this to change how high it goes
-    float height = 0.5f;
     // Start is called before the first frame update
     Vector3 pos;
     void Start()
