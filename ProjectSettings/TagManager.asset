@@ -8,6 +8,8 @@ TagManager:
   - Health
   - Gun_Loot_2
   - Loot
+  - Bullet
+  - SummonCircle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - SummonCircle
   - 
   - 
   - 
