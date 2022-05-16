@@ -20551,6 +20551,98 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000011929494458, guid: c3bbd9f38e0f2744a9cd075aabf8c52d, type: 3}
   m_PrefabInstance: {fileID: 853783885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &856833249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 856833251}
+  - component: {fileID: 856833250}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &856833250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856833249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b5ec9a50e1e7c4fa1a5705cdf86c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Walking
+    clip: {fileID: 8300000, guid: 96ba95a5aa439e549ae4f72753fe5846, type: 3}
+    group: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
+    volume: 0.736
+    pitch: 1.03
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shooting
+    clip: {fileID: 8300000, guid: f98b82f3ea8aa8941857058dee30858b, type: 3}
+    group: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
+    volume: 0.828
+    pitch: 0.22
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bonus
+    clip: {fileID: 8300000, guid: 82585801ec976954db624b43c425870c, type: 3}
+    group: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
+    volume: 0.831
+    pitch: 0.01
+    spatialBlend: 0.876
+    loop: 0
+    source: {fileID: 0}
+  - name: Growling
+    clip: {fileID: 8300000, guid: 28b8c996a95bb374fb172c270cdd2081, type: 3}
+    group: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
+    volume: 0.631
+    pitch: 0
+    spatialBlend: 0.858
+    loop: 1
+    source: {fileID: 0}
+  - name: Out of ammo
+    clip: {fileID: 8300000, guid: e5882232a0b000c4dbe1a2f532a393fc, type: 3}
+    group: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
+    volume: 0.902
+    pitch: 0.15
+    spatialBlend: 0.866
+    loop: 0
+    source: {fileID: 0}
+  - name: Ammo pickup
+    clip: {fileID: 8300000, guid: 4c092309f127c094fb1276c6049a27f0, type: 3}
+    group: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
+    volume: 0.902
+    pitch: 0.15
+    spatialBlend: 0.866
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &856833251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856833249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1149.553, y: 523.5, z: 0.008685168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &857913409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26002,6 +26094,10 @@ PrefabInstance:
     - target: {fileID: 4437748631461432392, guid: 12faff53a3a85024493231d4f55df92f, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437748631461432392, guid: 12faff53a3a85024493231d4f55df92f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4437748631461432396, guid: 12faff53a3a85024493231d4f55df92f, type: 3}
       propertyPath: m_Pivot.x

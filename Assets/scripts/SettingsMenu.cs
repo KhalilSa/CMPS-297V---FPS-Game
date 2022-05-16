@@ -31,11 +31,26 @@ public class SettingsMenu : MonoBehaviour
         resolutionsDropDown.value = currentResolutionIndex;
         resolutionsDropDown.RefreshShownValue();
     }
-    public void setVolume(float volume)
+
+    public void setMasterVolume(float volume)
     {
+        setVolume("masterVolume", volume);
+    }
+
+    public void setMusicVolume(float volume)
+    {
+        setVolume("musicVolume", volume);
+    }
+
+    public void setFxVolume(float volume)
+    {
+        setVolume("fxVolume", volume);
+    }
+
+    private void setVolume(string parName, float volume) {
         if (volume <= -60)
-            audioMixer.SetFloat("musicVolume", -80);
-        else audioMixer.SetFloat("musicVolume", volume);
+            audioMixer.SetFloat(parName, -80);
+        else audioMixer.SetFloat(parName, volume);
     }
 
     public void setQuality(int qualityLevel) {

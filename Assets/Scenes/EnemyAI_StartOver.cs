@@ -44,10 +44,13 @@ public class EnemyAI_StartOver : MonoBehaviour
     [SerializeField]
     private State currentState;
 
+    private AudioManager audioManager;
+
     void Start()
     {
         getReferences();
         resetSenseSettings();
+        audioManager.play("Growling");
     }
 
     // Update is called once per frame
@@ -113,6 +116,7 @@ public class EnemyAI_StartOver : MonoBehaviour
         sightSense = transform.Find("SightSense")?.GetComponent<SightSense>();
         attackSense = transform.Find("AttackSense")?.GetComponent<AttackSense>();
         animator = transform.Find("Zombie")?.GetComponent<Animator>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void resetSenseSettings() {
