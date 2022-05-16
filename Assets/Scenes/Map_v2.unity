@@ -20395,7 +20395,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 96ba95a5aa439e549ae4f72753fe5846, type: 3}
     outputAudioMixerGroup: {fileID: -3221898837393392831, guid: a2abf8d39d0d8cc48a8cf05a00b2c32c, type: 2}
     volume: 1
-    pitch: 3
+    pitch: 1
     spatialBlend: 1
     loop: 0
     source: {fileID: 0}
