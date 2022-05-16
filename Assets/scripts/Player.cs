@@ -12,11 +12,13 @@ public class Player : MonoBehaviour
     public Health_Bar health_bar;
 
     private AudioManager audioManager;
+    private GameManager gameManager;
     void Start()
     {
         armor = 25;
         health_bar.SetMaxHealth(100);
         audioManager = FindObjectOfType<AudioManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,9 @@ public class Player : MonoBehaviour
             armor--;
         health_bar.SetHealth(health);
         if (health <= 0)
-            Debug.Log("Player has died");
+        {
+            gameManager.endGame();
+        }
     }
 
     public int getHealth()
