@@ -21,7 +21,6 @@ public class Collision_Manager : MonoBehaviour
         LootSpawner spawner = collidedObject.GetComponentInParent<LootSpawner>();
         if(collidedObject.tag == "Health")
         {
-            Player player = this.gameObject.GetComponent<Player>();
             if (player != null)
             {
                 player.healPlayer(25);
@@ -30,7 +29,6 @@ public class Collision_Manager : MonoBehaviour
             }
         }else if(collidedObject.tag == "Loot")
         {
-            Player player = this.gameObject.GetComponent<Player>();
             if (player != null)
             {
                 // cap armor at 90%

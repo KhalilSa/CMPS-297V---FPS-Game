@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static int scoreToWin = 2;
+    public static int scoreToWin = 10;
 
     public static bool gameHasEnded;
     public static bool gameIsPaused;
@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         if (!gameHasEnded) 
         {
             gameHasEnded = true;
-            playerInfoUI.SetActive(false);
             // Show gameOver UI
             showGameOverUI();
             // play gameOver sound
@@ -46,6 +45,7 @@ public class GameManager : MonoBehaviour
     public static void restartGame() 
     {
         gameHasEnded = false;
+        levelWon = false;
         Time.timeScale = 1;
     }
 
@@ -54,12 +54,14 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
         gameOverMenu.SetActive(true);
+        playerInfoUI.SetActive(false);
     }
 
     public void checkScore() {
         if (player.score >= scoreToWin) 
         {
             gameHasEnded = true;
+            levelWon = true;
             showLevelWonUI();
         }
     }
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
         levelWonMenu.SetActive(true);
+        playerInfoUI.SetActive(false);
     }
 
     public void loadNextLevel()
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
         levelWon = false;
         Time.timeScale = 1;
         levelWonMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
         playerInfoUI.SetActive(true);
     }
 }

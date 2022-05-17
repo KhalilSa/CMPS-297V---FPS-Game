@@ -98,7 +98,6 @@ public class Gun : MonoBehaviour
     //function shoot that shoots a raycast and saves the info in a variable
     void Shoot()
     {
-        print("plying shooting sound");
         audioManager.play("Shooting");
         currentBullets--;
         RaycastHit hit; //hit info

@@ -682,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 8503303631255204767}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 15.8, y: 1.47, z: -16.3}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 8503303631344645237}
   - {fileID: 8503303631255183936}
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turningSpeed: 100
-  sightRange: 15
+  sightRange: 25
   attackRange: 2.2
   attackDamage: 25
   timeBetweenAttacks: 1.2

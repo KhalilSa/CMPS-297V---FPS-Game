@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7616ac16adc0662468cdfbc415384932, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8108f8d4daf277f4a8938795f4da9c18, type: 2}
 --- !u!1001 &502862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3545,15 +3545,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47bc99f2057c4424cb878a971051f994, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.05
+      value: 15.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47bc99f2057c4424cb878a971051f994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47bc99f2057c4424cb878a971051f994, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.85
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47bc99f2057c4424cb878a971051f994, type: 3}
       propertyPath: m_LocalRotation.w
@@ -35783,8 +35783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombie: {fileID: 8503303631255204767, guid: 49552cc404fc08142b337ec379926772, type: 3}
-  minSpawnDelay: 6
-  maxSpawnDelay: 12
+  minSpawnDelay: 7
+  maxSpawnDelay: 30
   difficulty: 1
 --- !u!1001 &1459159278
 PrefabInstance:

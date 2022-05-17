@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     GameManager gameManager;
 
     [SerializeField] GameObject playerInfoUI;
-/*    private void Awake()
+    private void Awake()
     {
         AudioManager[] objs = FindObjectsOfType<AudioManager>();
 
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-    }*/
+    }
     private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
