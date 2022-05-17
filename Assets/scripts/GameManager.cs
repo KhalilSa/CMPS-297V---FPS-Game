@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] GameObject levelWonMenu;
+    [SerializeField] GameObject playerInfoUI;
+
     AudioManager audioManager;
     Player player;
     private void Awake()
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         if (!gameHasEnded) 
         {
             gameHasEnded = true;
+            playerInfoUI.SetActive(false);
             // Show gameOver UI
             showGameOverUI();
             // play gameOver sound
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public static void restartGame() 
     {
-        gameHasEnded = true;
+        gameHasEnded = false;
         Time.timeScale = 1;
     }
 
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
     public void checkScore() {
         if (player.score >= scoreToWin) 
         {
+            gameHasEnded = true;
             showLevelWonUI();
         }
     }
@@ -72,5 +76,6 @@ public class GameManager : MonoBehaviour
         levelWon = false;
         Time.timeScale = 1;
         levelWonMenu.SetActive(false);
+        playerInfoUI.SetActive(true);
     }
 }

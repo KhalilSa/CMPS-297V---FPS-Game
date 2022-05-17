@@ -662,6 +662,12 @@ MonoBehaviour:
   damage: 50
   range: 800
   PlayerCam: {fileID: 0}
+  _gun: {fileID: 2004069958038983285}
+  maxBullets: 30
+  currentBullets: -2
+  reloadTime: 1
+  isOutofBullets: 0
+  magazine: 2
 --- !u!1 &2019073271896259320
 GameObject:
   m_ObjectHideFlags: 0

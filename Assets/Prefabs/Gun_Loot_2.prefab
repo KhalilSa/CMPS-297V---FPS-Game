@@ -3897,7 +3897,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5199829814245846261}
-  - component: {fileID: 3286595538491790081}
   - component: {fileID: 739338009022877659}
   m_Layer: 0
   m_Name: Gun_Loot_2
@@ -3969,18 +3968,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3286595538491790081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9111582981957164774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e60747da6763afd4baf9bddf133d7a24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &739338009022877659
 BoxCollider:
   m_ObjectHideFlags: 0

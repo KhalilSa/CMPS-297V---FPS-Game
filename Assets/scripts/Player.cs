@@ -7,18 +7,28 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
 
     public int health = 100;
-    public int armor; 
+    public int armor = 0; 
     public int score = 0;
+    [SerializeField] int initialArmor = 10;
     public Health_Bar health_bar;
 
     private AudioManager audioManager;
     private GameManager gameManager;
-    void Start()
+    private ScoreManager scoreManager;
+
+    private Armor armorManager;
+    void Awake()
     {
-        armor = 25;
         health_bar.SetMaxHealth(100);
         audioManager = FindObjectOfType<AudioManager>();
         gameManager = FindObjectOfType<GameManager>();
+        scoreManager = FindObjectOfType<ScoreManager>();
+        armorManager = FindObjectOfType<Armor>();
+    }
+
+    private void Start()
+    {
+        equipArmor(initialArmor);
     }
 
 
@@ -26,6 +36,7 @@ public class Player : MonoBehaviour
     {
         audioManager.play("Bonus");
         armor += arm;
+        armorManager.updateArmor(armor);
     }
 
     public void takeDamage(int damage)
@@ -35,6 +46,7 @@ public class Player : MonoBehaviour
         if (armor > 0)
             armor--;
         health_bar.SetHealth(health);
+        armorManager.updateArmor(armor);
         if (health <= 0)
         {
             gameManager.endGame();
@@ -50,11 +62,13 @@ public class Player : MonoBehaviour
     {
         audioManager.play("Bonus");
         health += health_num;
+        health_bar.SetHealth(health);
     }
 
     public void incrementScore()
     {
         score++;
+        scoreManager.IncrementScore(score);
     }
 
 }

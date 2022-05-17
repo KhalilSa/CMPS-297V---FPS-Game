@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class LootSpawner : MonoBehaviour
 {
-
-
     public GameObject LootPrefab;
+
+    public static float ArmorSpawnDelay = 3f;
+    public static float GunSpawnDelay = 5f;
+    public static float HealthSpawnDelay = 7f;
 
     // Start is called before the first frame update
     void Start()
@@ -14,18 +16,14 @@ public class LootSpawner : MonoBehaviour
         StartCoroutine(SpawnTimer(1));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-    public IEnumerator SpawnTimer(int SpawnTimeDelay)
+    public IEnumerator SpawnTimer(float SpawnTimeDelay)
     {
         yield return new WaitForSeconds(SpawnTimeDelay);
         GameObject loot = Instantiate(LootPrefab);
         loot.transform.SetParent(transform, true);
-        loot.transform.localPosition = new Vector3(0,0.55f,0);
+        loot.transform.localPosition = Vector3.zero;
+        if (loot.tag == "Gun_Loot" || loot.tag == "Gun_Loot_2") {
+            loot.transform.localScale = 0.15f * Vector3.one;
+        }
     }
 }

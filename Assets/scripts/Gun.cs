@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
     public int magazine = 2;
 
     private AudioManager audioManager;
+    private BulletsCount bullets;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,8 @@ public class Gun : MonoBehaviour
             currentBullets = maxBullets;
 
         audioManager = FindObjectOfType<AudioManager>();
+        bullets = FindObjectOfType<BulletsCount>();
+        bullets.updateGun(maxBullets, magazine, false);
     }
 
     // Update is called once per frame
@@ -58,7 +61,8 @@ public class Gun : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if (!GameManager.gameIsPaused && !GameManager.gameHasEnded)
+                Shoot();
         }
         
     }
@@ -66,6 +70,7 @@ public class Gun : MonoBehaviour
     public void incMagazine()
     {
         magazine++;
+        bullets.updateGun(maxBullets, magazine, false);
     }
 
 
@@ -79,6 +84,7 @@ public class Gun : MonoBehaviour
         currentBullets = maxBullets;
         isOutofBullets = false;
         magazine--;
+        bullets.updateGun(currentBullets, magazine, true);
     }
 
 
@@ -105,6 +111,7 @@ public class Gun : MonoBehaviour
                 target.takeDamage(damage); //call the take damage function
             }
         }
+        bullets.updateGun(currentBullets, magazine, false);
     }
 
     public float getDamage() {

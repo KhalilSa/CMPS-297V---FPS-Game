@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     AudioManager audioManager;
     GameManager gameManager;
 
-    private void Awake()
+    [SerializeField] GameObject playerInfoUI;
+/*    private void Awake()
     {
         AudioManager[] objs = FindObjectsOfType<AudioManager>();
 
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-    }
+    }*/
     private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
     public void resume() {
         Cursor.lockState = CursorLockMode.Locked;
         pauseUI.SetActive(false);
+        playerInfoUI.SetActive(true);
         Time.timeScale = 1;
         GameManager.gameIsPaused = false;
         audioManager.stop("PauseHorrorSound");
@@ -58,6 +60,7 @@ public class UIManager : MonoBehaviour
     void pause() {
         Cursor.lockState = CursorLockMode.None;
         pauseUI.SetActive(true);
+        playerInfoUI.SetActive(false);
         Time.timeScale = 0;
         GameManager.gameIsPaused = true;
         audioManager.playOnly("PauseHorrorSound");
