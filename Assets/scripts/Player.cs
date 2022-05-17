@@ -21,12 +21,6 @@ public class Player : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void equipArmor(int arm)
     {

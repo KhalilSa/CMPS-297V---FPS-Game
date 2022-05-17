@@ -6,10 +6,23 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject pauseUI;
     AudioManager audioManager;
+    GameManager gameManager;
 
+    private void Awake()
+    {
+        AudioManager[] objs = FindObjectsOfType<AudioManager>();
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
     private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -54,7 +67,13 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameManager.restartGame();
-        Time.timeScale = 1;
+    }
+
+    public void loadNextScene() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.restartGame();
+        gameManager.loadNextLevel();
     }
 
 }

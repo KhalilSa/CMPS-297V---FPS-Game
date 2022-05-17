@@ -6,6 +6,12 @@ public class Target : MonoBehaviour
 {
 
     public float health = 100f;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     public void takeDamage(float damage)
     {
@@ -14,6 +20,7 @@ public class Target : MonoBehaviour
         {
             Killed();
             GameObject.Find("Player").GetComponent<Player>().incrementScore();
+            gameManager.checkScore();
         }
     }
 
